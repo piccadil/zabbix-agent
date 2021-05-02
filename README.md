@@ -1,4 +1,4 @@
 # zabbix-agent
-Source code used in my post
+Ansible playbook for zabbix example. Source code used in my post
 
-Исходники для поста 
+Пример ansible плейбука для zabbix. Исходники для поста 
