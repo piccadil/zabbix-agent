@@ -1,0 +1,31 @@
+- hosts: all 
+  tasks:
+    - name: Install agent
+      include_role:
+        name:  community.zabbix.zabbix_agent 
+      tags:
+        - install 
+    - name: Create a new host or update an existing host's info 
+      local_action:
+        module: community.zabbix.zabbix_host 
+        server_url: "{{ zabbix_url }}" 
+        login_user: "{{ zabbix_api_user }}" 
+        login_password: "{{ zabbix_api_pass }}" 
+        host_name: "{{ item }}" - 
+        visible_name: "{{ hostvars[item].zabbix_visible_name | default(item) }}" 
+        description: "{{   hostvars[item].zabbix_host_description | default('') }} OS: {{  hostvars[item].ansible_distribution | default('') }} {{  hostvars[item].ansible_distribution_version | default('') }}"
+        link_templates: "{{ hostvars[item].zabbix_link_templates }}" 
+        status: "{{  hostvars[item].zabbix_host_status }}"
+        state: present 
+        inventory_mode: disabled 
+        interfaces:
+          - type: "{{ hostvars[item].zabbix_interface_type }}" 
+            main: 1 
+            useip: "{{ hostvars[item].zabbix_interface_use_ip }}" 
+            ip: "{{ hostvars[item].zabbix_interface_ip }}" 
+            dns: "{{ item }}"
+            port: "{{ hostvars[item].zabbix_interface_port }}"
+      loop: "{{ groups['all'] }}" 
+      run_once: true 
+      tags:
+        - add-host 
