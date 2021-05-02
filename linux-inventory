@@ -1,0 +1,19 @@
+[all]
+host1.local 
+host2.local  zabbix_host_description=”The host2 description” 
+host3.local zabbix_host_status=disabled
+host4.local zabbix_host_groups=’["Custom group"]’ 
+[all:vars]
+zabbix_agent_server=my.zabbix.server
+zabbix_url=https://my.zabbix.server 
+zabbix_api_use=true 
+zabbix_api_user=Admin
+zabbix_api_pass=StrongPa$$w0rd
+zabbix_interface_port="10050"
+zabbix_host_groups=["Linux servers"]
+zabbix_link_templates=["Linux by Zabbix agent"] 
+zabbix_interface_type=agent 
+zabbix_interface_use_ip="0" 
+zabbix_interface_ip=""
+zabbix_host_description="My linux server" 
+zabbix_host_status=enabled 
