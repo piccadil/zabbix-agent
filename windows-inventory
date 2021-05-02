@@ -1,0 +1,22 @@
+[all]
+winhost01.local
+winhost02.local  zabbix_host_groups=’["Custom group"]’ 
+winhost03.local zabbix_host_status=disabled
+[all:vars]
+ansible_user=user@DOMAIN.LOCAL 
+ansible_password=StrongPa$$w0rd
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+zabbix_agent_server=my.zabbix.server 
+zabbix_url=https://my.zabbix.server 
+zabbix_api_use=true 
+zabbix_api_user=Admin
+zabbix_api_pass=StrongPa$$w0rd
+zabbix_interface_port="10050" 
+zabbix_host_groups=["Windows servers"]  
+zabbix_link_templates=["Windows by Zabbix agent"] 
+zabbix_interface_type=agent 
+zabbix_interface_use_ip="0" 
+zabbix_interface_ip=""
+zabbix_host_description="My windows server" 
+zabbix_host_status=enabled 
